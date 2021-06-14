@@ -1,4 +1,4 @@
-Copy this section to Dashboard.config
+Copy this section to Dashboard.config in your config folder
 
 <section alias="Multiple Dashboard">
     <areas>
