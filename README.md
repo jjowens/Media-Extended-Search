@@ -2,7 +2,7 @@
 Plugin for Umbraco Version 7+
 
 ## Instructions
-Please test his plugin on a local or staging enviornment. It's not quite production ready. The style and layout needs some refining. 
+Please test this plugin on a local or staging enviornment. It's not quite production ready. The style and layout needs some refining. 
 
 Add the folder 'MediaExtendedSearch' from the src folder into your packages folder.
 
