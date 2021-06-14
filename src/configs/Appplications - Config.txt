@@ -1,0 +1,4 @@
+Copy this section to Applications.config in your config folder. Set your sortOrder index where applicable to your current setup.
+  
+  
+<add alias="multipledashboard" name="Multiple Dashboard Dummy" icon="traydeveloper" sortOrder="9" />

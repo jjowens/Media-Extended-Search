@@ -1,0 +1,186 @@
+﻿.search-options-box {
+    margin-bottom: 1em;
+}
+
+.search-option-row {
+    float: left;
+    clear: both;
+}
+
+.search-option-cell {
+    float: left;
+    margin: 0.2em 0.4em;
+}
+
+.search-option-right {
+    float: right;
+}
+
+.search-results-frame {
+    border: 0.1em solid;
+    border-color: gainsboro;
+}
+
+.search-results-header {
+    background-color: lightblue;
+    color: black;
+    float: left;
+    padding: 0.2em;
+}
+
+.search-results-checkbox {
+    width: 2em;
+}
+
+.search-results-filename {
+    width: 10em;
+}
+
+.search-results-fileextension {
+    width: 8em;
+}
+
+.search-results-image-icon {
+    width: 8em;
+}
+
+.search-results-width {
+    width: 8em;
+}
+
+.search-results-height {
+    width: 8em;
+}
+
+.search-results-author {
+    width: 9em;
+}
+
+.search-results-datecreated {
+    width: 9em;
+}
+
+.search-results-datemodified {
+    width: 9em;
+}
+
+.search-results-filesize {
+    width: 12em;
+}
+
+.search-results-row {
+    background-color: white;
+    float:left;
+    clear:both;
+}
+
+.search-results-row-alt {
+    background-color: lightgray;
+    float: left;
+    clear: both;
+}
+
+.search-results-cell {
+    border-top: 0.1em solid black;
+    float: left;
+    padding: 0.2em;
+}
+
+.search-results-options {
+    width: 8em;
+}
+
+.search-option-cell p {
+    margin-top: 0.5em;
+}
+
+.search-option-filename-label {
+    margin-right: 0em;
+}
+
+.search-option-filename-input {
+    margin-right: 0em;
+}
+
+.search-option-mediatype-label {
+    margin-right: 0em;
+}
+
+.search-option-mediatype-input {
+    margin-right: 0em;
+}
+
+.search-option-fileextension-label {
+    margin-right: 0em;
+}
+
+.search-option-fileextension-input {
+    margin-right: 0em;
+}
+
+.search-option-filesize-label {
+    margin-right: 0em;
+}
+
+.search-option-filesize-input {
+    margin-right: 0em;
+}
+
+.search-option-filesize-range {
+    margin-right: 0em;
+}
+
+.search-option-width-label {
+    margin-right: 0em;
+}
+
+.search-option-width-input {
+    margin-right: 0em;
+}
+
+.search-option-width-range {
+    margin-right: 0em;
+}
+
+.search-option-height-label {
+    margin-right: 0em;
+}
+
+.search-option-height-input {
+    margin-right: 0em;
+}
+
+.search-option-height-range {
+    margin-right: 0em;
+}
+
+.search-results-sort {
+    cursor: pointer;
+}
+
+.sort-by-icon {
+    display:inline;
+}
+
+.search-datepicker div:first-child {
+    margin-top: -0.5em;
+}
+
+.search-no-results-found {
+    margin: 0.3em; 
+    font-weight: bold;
+}
+
+.search-error {
+    margin: 0.3em;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.available-searcher-row-odd {
+    background-color: gainsboro;
+}
+
+.available-searcher-row-even {
+    background-color: red;
+}

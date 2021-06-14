@@ -1,0 +1,17 @@
+﻿{
+  "dashboards": [
+    {
+      "alias": "MediaExtendedSearch",
+      "view": "/App_Plugins/MediaExtendedSearch/Dashboard.html?v=3",
+      "sections": [ "mediaextendedsearch" ],
+      "weight": 0,
+      "access": [
+        { "grant": "admin" }
+      ]
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/MediaExtendedSearch/scripts/mediaextendedsearch.controller.js?v=3"
+  ],
+  "css": [ "~/App_Plugins/MediaExtendedSearch/css/mediaextendedsearch-default.css" ]
+}

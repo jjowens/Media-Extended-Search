@@ -1,0 +1,17 @@
+Copy this section to Dashboard.config
+
+<section alias="Multiple Dashboard">
+    <areas>
+      <area>multipledashboard</area>
+    </areas>
+    <tab caption="Content">
+      <control>
+        /App_Plugins/MultipleDashboard/dashboard.html
+      </control>
+    </tab>
+    <tab caption="Advanced">
+      <control>
+        /App_Plugins/MultipleDashboard/dashboard2.html
+      </control>
+    </tab>
+  </section>

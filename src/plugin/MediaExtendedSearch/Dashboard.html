@@ -1,0 +1,170 @@
+﻿<div ng-controller="My.MediaExtendedSearchController">
+    <div class="search-options-box">
+        <!-- TYPE OF SEARCH -->
+        <div class="search-option-row">
+            <div class="search-option-cell search-option-mediatype-label"><p>Examine Searcher</p></div>
+            <div class="search-option-cell search-option-mediatype-input">
+                <select ng-model="mediaSearcherType" no-dirty-check>
+                    <option ng-repeat="item in AvailableSearchers" ngvalue="{{item.Name}}" >{{ item.Name }}</option>
+                </select>
+            </div>
+
+            <div class="search-option-cell search-option-mediatype-label"><p>Media Type</p></div>
+            <div class="search-option-cell search-option-mediatype-input">
+                <select ng-model="mediaSearchMediaType" ng-change="mediaSearchMediaChange()" no-dirty-check>
+                    <option value="file">File</option>
+                    <option value="image">Image</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- FILE PROPERTIES -->
+        <div class="search-option-row">
+            <div class="search-option-cell search-option-filename-label"><p>File Name</p></div>
+            <div class="search-option-cell search-option-filename-input"><input type="text" ng-model="mediaSearchFileName" no-dirty-check/></div>
+            
+            <div class="search-option-cell search-option-fileextension-label"><p>File Extension</p></div>
+            <div class="search-option-cell search-option-fileextension-input"><input type="text" ng-model="mediaSearchFileExtension" no-dirty-check/></div>
+            <div class="search-option-cell search-option-filesize-label"><p>File Size (bytes)</p></div>
+            <div class="search-option-cell search-option-filesize-input"><input type="text" ng-model="mediaSearchFileSize" no-dirty-check/></div>
+            <div class="search-option-cell search-option-filesize-range">
+                <select ng-model="mediaSearchFileSizeRange" no-dirty-check>
+                    <option ng-repeat="item in mediaSearchRangeOperators" value="{{item.value}}">{{ item.name }}</option>
+                </select>
+            </div>
+        </div>
+        <!-- IMAGE DIMENSIONS -->
+        <div class="search-option-row search-option-image" ng-disabled="mediaSearchImageDisabled">
+            <div class="search-option-cell search-option-width-label"><p>Width (pixels)</p></div>
+            <div class="search-option-cell search-option-width-input"><input type="text" ng-model="mediaSearchWidth" ng-disabled="mediaSearchImageDisabled" no-dirty-check/></div>
+            <div class="search-option-cell search-option-width-range">
+                <select ng-model="mediaSearchWidthRange" ng-disabled="mediaSearchImageDisabled" no-dirty-check>
+                    <option ng-repeat="item in mediaSearchRangeOperators" value="{{item.value}}">{{ item.name }}</option>
+                </select>
+            </div>
+            <div class="search-option-cell search-option-height-label"><p>Height (pixels)</p></div>
+            <div class="search-option-cell search-option-height-input"><input type="text" ng-model="mediaSearchHeight" ng-disabled="mediaSearchImageDisabled" no-dirty-check/></div>
+            <div class="search-option-cell search-option-height-range">
+                <select ng-model="mediaSearchHeightRange" ng-disabled="mediaSearchImageDisabled" no-dirty-check>
+                    <option ng-repeat="item in mediaSearchRangeOperators" value="{{item.value}}">{{ item.name }}</option>
+                </select>
+            </div>
+        </div>
+        <!-- DATE RANGE -->
+        <div class="search-option-row">
+            <div class="search-option-cell search-option-datecreated-label"><p>Date Created</p></div>
+            <div class="search-option-cell search-datepicker search-option-datecreated-input">
+                <div>
+                    <umb-property property="mediaSearchDateCreatedStart">
+                        <umb-editor model="mediaSearchDateCreatedStart"></umb-editor>
+                    </umb-property>
+                </div>
+            </div>
+            <div class="search-option-cell search-datepicker search-option-datecreated-input">
+                <div>
+                    <umb-property property="mediaSearchDateCreatedEnd">
+                        <umb-editor model="mediaSearchDateCreatedEnd"></umb-editor>
+                    </umb-property>
+                </div>
+            </div>
+            <div class="search-option-cell search-option-datemodified-label"><p>Date Modified</p></div>
+            <div class="search-option-cell search-datepicker search-option-datemodified-input">
+                <div>
+                    <umb-property property="mediaSearchDateModifiedStart">
+                        <umb-editor model="mediaSearchDateModifiedStart"></umb-editor>
+                    </umb-property>
+                </div>
+            </div>
+            <div class="search-option-cell search-datepicker search-option-datemodified-input">
+                <div>
+                    <umb-property property="mediaSearchDateModifiedEnd">
+                        <umb-editor model="mediaSearchDateModifiedEnd"></umb-editor>
+                    </umb-property>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;">
+        </div>
+        <div>
+            <input id="btnMediaSearch" type="button" ng-click="SearchMedia()" value="Search">
+            <input id="btnMediaClear" type="button" ng-click="ClearSearch()" value="Clear All">
+
+            <div class="search-option-right">
+                <input id="btnMediaSelectAll" type="button" value="Select All">
+                <input id="btnMediaDeleteSelected" type="button" value="Delete Selected">
+            </div>
+        </div>
+        <div>
+            <p>Total Search Results: {{TotalSearchResults}}. Sorted by {{ OrderByHeader }}</p>
+        </div>
+    </div>
+
+    <div class="search-results-frame">
+        <div>
+            <div class="search-results-header search-results-sort search-results-checkbox">&nbsp;</div></div>
+            <div class="search-results-header search-results-sort search-results-filename" ng-click="SortByHeader($event)" data-headername="Filename">Filename <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-fileextension" ng-click="SortByHeader($event)" data-headername="FileExtension">File Extension <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-image search-results-image-icon" data-headername="Image">Image/Icon</div>
+            <div class="search-results-header search-results-sort search-results-width search-results-image" ng-click="SortByHeader($event)" data-headername="Width">Width <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-height search-results-image" ng-click="SortByHeader($event)" data-headername="Height">Height <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-filesize" ng-click="SortByHeader($event)" data-headername="FileSize" )">File Size <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-author" ng-click="SortByHeader($event)" data-headername="Author">Author <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-datecreated" ng-click="SortByHeader($event)" data-headername="CreatedDate">Date Created <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-sort search-results-datemodified" ng-click="SortByHeader($event)" data-headername="ModifiedDate">Date Modified <div class="sort-by-icon"></div></div>
+            <div class="search-results-header search-results-options">Options</div>
+        </div>
+        <div class="search-results" ng-repeat="result in SearchResults | orderBy:OrderByHeader:ReverseSort">
+            <div class="search-results-row" ng-class-even="'search-results-row'" ng-class-odd="'search-results-row-alt'">
+                <div class="search-results-cell search-results-checkbox">
+                    <p><input type="checkbox" name="chkNodeID" value="{{ result.NodeID }}"/></p>
+                </div>
+                <div class="search-results-cell search-results-filename">
+                    <p>{{ result.Filename }}</p>
+                </div>
+                <div class="search-results-cell search-results-fileextension">
+                    <p>{{ result.FileExtension }}</p>
+                </div>
+                <div class="search-results-cell search-results-image-icon search-results-image">
+                    <img src="{{ result.FullURL}}" style="width: 100px" ng-if="result.FileType == 'image'" />
+                    <p ng-if="result.FileType == 'file'">-</p>
+                </div>
+                <div class="search-results-cell search-results-width search-results-image">
+                    <p ng-if="result.FileType == 'image'">{{ result.Width }}px</p>
+                    <p ng-if="result.FileType == 'file'">-</p>
+                </div>
+                <div class="search-results-cell search-results-height search-results-image">
+                    <p ng-if="result.FileType == 'image'">{{ result.Height }}px</p>
+                    <p ng-if="result.FileType == 'file'">-</p>
+                </div>
+                <div class="search-results-cell search-results-filesize">
+                    <p>
+                        {{ formatBytes(result.FileSize) }}<br />
+                        ({{ result.FileSize }} bytes)
+                    </p>
+                </div>
+                <div class="search-results-cell search-results-author">
+                    <p>{{ result.Author }}</p>
+                </div>
+                <div class="search-results-cell search-results-datecreated">
+                    <p>{{ formatDate(result.CreatedDate) }}</p>
+                </div>
+                <div class="search-results-cell search-results-datemodified">
+                    <p>{{ formatDate(result.ModifiedDate) }}</p>
+                </div>
+                <div class="search-results-cell search-results-options">
+                    <p>
+                        <a href="#/media/media/edit/{{ result.NodeID}}">Edit</a>
+                        <a href="#">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="search-results-row" ng-if="NoResultsFound == true">
+            <p class="search-no-results-found">Sorry, we did not find any media with your criteria</p>
+            <p class="search-error" ng-if="IsError == true">{{ ErrorMessage }}</p>
+        </div>
+        <div style="clear:both;">
+            &nbsp;
+        </div>
+    </div>
+</div>
